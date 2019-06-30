@@ -41,7 +41,7 @@ database_projet_service["host"] = sys.argv[1]
 # Fonction de génération de mots de passe qui respecte les recommandations ANSI
 
 def generate_password():
-	valid_punctuation = "#([-|_^@)=}{]%$*!:/;.,?&<>"
+	valid_punctuation = "#([-|_^)=}{]$*!?&<>"
 	min_char = 12
 	max_char = 20
 	allchar = string.ascii_letters + valid_punctuation + string.digits
@@ -58,7 +58,10 @@ subprocess.call(["echo", password ," >> mongo_password.txt"], shell=True)
 password_admin_projet = generate_password()
 print("Base : projet | utilisateur : adminprojet | mot de passe : ",password_admin_projet," | role : dbAdmin\n")
 database_projet["password"] = password_admin_projet
-subprocess.call(["echo", password_admin_projet ," >> mongo_password.txt"], shell=True)
+myfile = open("mongo_password","a+")
+myfile.write(password_admin_projet)
+myfile.close()
+
 
 password_service_projet = generate_password()
 print("Base : projet | utilisateur : service | mot de passe : ",password_service_projet," | role : read")
