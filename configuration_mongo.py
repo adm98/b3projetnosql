@@ -34,9 +34,9 @@ database_projet_service = {
     "db_name": "projet",
 }
 
-database_admin["host"] = sys.argv[0]
-database_projet["host"] = sys.argv[0]
-database_projet_service["host"] = sys.argv[0]
+database_admin["host"] = sys.argv[1]
+database_projet["host"] = sys.argv[1]
+database_projet_service["host"] = sys.argv[1]
 
 # Fonction de génération de mots de passe qui respecte les recommandations ANSI
 
@@ -70,10 +70,7 @@ subprocess.call(["echo", password_service_projet ," >> mongo_password.txt"], she
 ###### Connexion à la base Admin et ajout de l'utilisateur administrateur
 
 connection = MongoClient(f'mongodb://{database_admin["host"]}:{database_admin["port"]}/{database_admin["db_name"]}')
-print(connection)
-print("")
 db_admin = connection[database_admin["db_name"]]
-print(db_admin)
 db_admin.add_user(database_admin["login"], database_admin["password"], roles=[{'role':'dbOwner','db':'admin'}])
 connection.close()
 
@@ -125,8 +122,8 @@ except:
 
 # Modification de la configuration de MongoDB afin d'interdire la connexion à un utilisateur non authentifié
 
-subprocess.call("docker exec -it $(docker ps -qf label=com.docker.swarm.service.name=overlay_mongo1) bash -c \"sed -i -r 's/#auth = true/auth = true/' /etc/mongodb.conf\"", shell=True)
-subprocess.call("docker exec -it $(docker ps -qf label=com.docker.swarm.service.name=overlay_mongo1) bash -c \"systemctl restart mongodb\"", shell=True)
+#subprocess.call("docker exec -it $(docker ps -qf label=com.docker.swarm.service.name=overlay_mongo1) bash -c \"sed -i -r 's/#auth = true/auth = true/' /etc/mongodb.conf\"", shell=True)
+#subprocess.call("docker exec -it $(docker ps -qf label=com.docker.swarm.service.name=overlay_mongo1) bash -c \"systemctl restart mongodb\"", shell=True)
 
 # Ici le validateur est défini, il sera ajouter à la collection lors de sa création
 
