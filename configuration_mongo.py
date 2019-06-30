@@ -8,13 +8,14 @@ from random import *
 from pymongo import MongoClient
 from collections import OrderedDict
 
-host_ip_address = sys.argv[0]
-host_ip_address = string(host_ip_address)
+database_admin["host"] = sys.argv[0]
+database_projet["host"] = sys.argv[0]
+database_projet_service["host"] = sys.argv[0]
 
 # On définit ici un dictionnaire pour chaque compte utilisateur qui va être créer
 
 database_admin = {
-    "host": host_ip_address,
+    "host": "",
     "login": "administrateur",
     "password": "",
     "port": "10000",
@@ -22,7 +23,7 @@ database_admin = {
 }
 
 database_projet = {
-	"host": host_ip_address,
+	"host": "",
     "login": "adminprojet",
     "password": "",
     "port": "10000",
@@ -30,7 +31,7 @@ database_projet = {
 }
 
 database_projet_service = {
-	"host": host_ip_address,
+	"host": "",
     "login": "service",
     "password": "",
     "port": "10000",
