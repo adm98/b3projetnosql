@@ -70,7 +70,10 @@ subprocess.call(["echo", password_service_projet ," >> mongo_password.txt"], she
 ###### Connexion à la base Admin et ajout de l'utilisateur administrateur
 
 connection = MongoClient(f'mongodb://{database_admin["host"]}:{database_admin["port"]}/{database_admin["db_name"]}')
+print(connection)
+print("")
 db_admin = connection[database_admin["db_name"]]
+print(db_admin)
 db_admin.add_user(database_admin["login"], database_admin["password"], roles=[{'role':'dbOwner','db':'admin'}])
 connection.close()
 
