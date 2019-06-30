@@ -8,10 +8,6 @@ from random import *
 from pymongo import MongoClient
 from collections import OrderedDict
 
-database_admin["host"] = sys.argv[0]
-database_projet["host"] = sys.argv[0]
-database_projet_service["host"] = sys.argv[0]
-
 # On définit ici un dictionnaire pour chaque compte utilisateur qui va être créer
 
 database_admin = {
@@ -37,6 +33,10 @@ database_projet_service = {
     "port": "10000",
     "db_name": "projet",
 }
+
+database_admin["host"] = sys.argv[0]
+database_projet["host"] = sys.argv[0]
+database_projet_service["host"] = sys.argv[0]
 
 # Fonction de génération de mots de passe qui respecte les recommandations ANSI
 
