@@ -1,7 +1,7 @@
 #!/usr/bin/python3.7 -W ignore::DeprecationWarning
 # ADRIEN MONTIGNEAUX B3
 import string
-import sys.argv
+import sys
 import subprocess
 import urllib.parse
 from random import *
@@ -9,6 +9,7 @@ from pymongo import MongoClient
 from collections import OrderedDict
 
 host_ip_address = sys.argv[0]
+host_ip_address = string(host_ip_address)
 
 # On définit ici un dictionnaire pour chaque compte utilisateur qui va être créer
 
