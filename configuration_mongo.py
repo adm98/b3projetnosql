@@ -50,16 +50,19 @@ password = generate_password()
 print("##############################################################################################################")
 print("Base : admin | utilisateur : admin | mot de passe : ",password," | role : dbOwner\n")
 database_admin["password"] = password
+subprocess.call(["echo", password ," >> mongo_password.txt"], shell=True)
 
 
 password_admin_projet = generate_password()
 print("Base : projet | utilisateur : adminprojet | mot de passe : ",password_admin_projet," | role : dbAdmin\n")
 database_projet["password"] = password_admin_projet
+subprocess.call(["echo", password_admin_projet ," >> mongo_password.txt"], shell=True)
 
 password_service_projet = generate_password()
 print("Base : projet | utilisateur : service | mot de passe : ",password_service_projet," | role : read")
 print("#############################################################################################################")
 database_projet_service["password"] = password_service_projet
+subprocess.call(["echo", password_service_projet ," >> mongo_password.txt"], shell=True)
 
 
 ###### Connexion à la base Admin et ajout de l'utilisateur administrateur
